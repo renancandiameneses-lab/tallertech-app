@@ -7488,11 +7488,7 @@ async function ttLicenseBoot(){
 
 const ttLicenseOldDoLogin = doLogin;
 doLogin = async function(){
-  const valid = await ttGetValidLicense();
-  if(!valid){
-    ttShowLicenseGate(localStorage.getItem('tt_license_last_error') || 'Activa la licencia antes de ingresar.');
-    return;
-  }
+  ttHideLicenseGate();
   return ttLicenseOldDoLogin.apply(this, arguments);
 };
 
