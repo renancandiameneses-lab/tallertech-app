@@ -7498,18 +7498,7 @@ showPage = function(name, el){
   if(name === 'config') setTimeout(ttRenderLicensePanel, 30);
 };
 
-setInterval(async () => {
-  if(!currentUser) return;
-  const valid = await ttGetValidLicense();
-  if(!valid){
-    localStorage.removeItem('tt_token');
-    localStorage.removeItem('tt_user');
-    currentUser = null;
-    const app = document.getElementById('app-shell');
-    if(app) app.classList.remove('visible');
-    ttShowLicenseGate(localStorage.getItem('tt_license_last_error') || 'La licencia ya no es valida.');
-  }
-}, 10 * 60 * 1000);
+// Chequeo de licencia local desactivado para versión cloud.
 
 TT_LOCAL.readState();
 updateCommPreview();
